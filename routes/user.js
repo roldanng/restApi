@@ -108,15 +108,5 @@ router.delete('/:uid/only', async(req, res) => {
 	}
 });
 
-router.delete('/:uid/all', async(req, res) => {
-	try {
-		const removedUser = await User.remove({ _id: req.params.uid, get: req.body });
-		const removedPosts = await Post.deleteMany({ userID: req.params.uid });
-		res.json(removedUser);
-		res.json(removedPosts);
-	} catch(err) {
-		res.json({ message: err });
-	}
-});
 
 module.exports = router;
