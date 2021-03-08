@@ -98,6 +98,19 @@ router.get('/users', async (req, res) => {
 	}
 });
 
+// Get User id
+router.get('/:uid/only', async (req, res) => {
+	
+    
+	// Check if User already in database
+	const user = await User.findOne({_id: req.params.uid}, {})
+	try{
+		res.json(user);
+	} catch (err) {
+		res.json({ message: err });
+	}
+});
+
 // Delete user 
 router.delete('/:uid/only', async(req, res) => {
 	try {
